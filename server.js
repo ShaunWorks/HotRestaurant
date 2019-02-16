@@ -9,11 +9,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('Assets'));
 //Data================================
-var tables = [{
-    name: "Ezra"
-}];
-var waitlist = [{
-}];
+var tables = [];
+var waitlist = [];
 //Routes getters ===================================
 app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "index.html"));
