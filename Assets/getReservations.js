@@ -7,7 +7,7 @@ $.get("/api/tables", function (data) {
         let phone = data[i].phone;
         console.log(id, name, email, phone);
 
-        let table = $("#current-reservations");
+        let table = (i < 5) ? $("#current-reservations") : $("#waiting-list");
         let card = $("<div>").addClass("card mb-3");
 
         let header = $("<div>").addClass("card-header");
