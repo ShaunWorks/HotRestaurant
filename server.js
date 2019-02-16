@@ -11,14 +11,17 @@ app.use(express.json());
 var tables = [{
     name: "Ezra"
 }];
-var waitlist = [];
+var waitlist = [{
+}];
 //Routes
-app.get("/api/tables", function(req,res) {
+app.get("/api/tables", function (req, res) {
     return res.json(tables);
 });
-app.get("/api/waitlist", function(req,res) {
+
+app.get("/api/waitlist", function (req, res) {
     return res.json(waitlist);
 });
-app.listen(PORT, function() {
+
+app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
-  });
+});
