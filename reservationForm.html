@@ -18,7 +18,7 @@
             <h4 class="text-center">Make Your Reservation</h4>
             <br class="my-2">
             <div class="text-center">
-                <a class="btn btn-primary btn-danger btn-lg center" href="/tables" role="button">View Tables</a>
+                <a class="btn btn-primary btn-lg" href="tables" role="button"><i class="fas fa-table"></i> View Tables</a>
                 <a class="btn btn-light btn-lg" href="/" role="button"><i class="fas fa-home"></i></a>
             </div>
         </div>
@@ -39,43 +39,54 @@
             </div>
             <div class="form-group">
                 <label for="exampleUniqueID">Unique ID</label>
-                <input type="uniqueID" class="form-control" id="uniqueID" placeholder="">
+                <input type="uniqueID" class="form-control" id="id" placeholder="">
             </div>
             <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
         </form>
+
+        <br class="my-2">
+
+        <div>
+            <a href="#" class="d-inline">Clear Table</a>
+            <p class="d-inline">|</p>
+            <a href="api/tables" class="d-inline">API Table Link</a>
+            <p class="d-inline">|</p>
+            <a href="api/waitlist" class="d-inline">API Wait List</a>
+        </div>
     
     </div>
 
-    
-    
-
-    
-    
-    
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-        $("#submit-btn").on("click", function(){
-            let name = $("#name").val().trim();
-            let phone = $("#phone").val().trim();
-            let email = $("#email").val().trim();
-            let uniqueID = $("#uniqueID").val().trim();
 
-            name = name.replace(/\s+/g, "").toLowerCase();
-            phone = phone.replace(/\s+/g, "").toLowerCase();
-            email = email.replace(/\s+/g, "").toLowerCase();
-            uniqueID = uniqueID.replace(/\s+/g, "").toLowerCase();
+    $("#submit-btn").click(function() {
+        
+        event.preventDefault();
+        
+        let customerInfo = {
+            name: $("#name").val().trim(),
+            phone: $("#phone").val().trim(),
+            email: $("#email").val().trim(),
+            id: $("#id").val().trim()
+        };
 
-            
-        })
+        $.ajax({
+            type: "POST",
+            url: "/api/tables",
+            dataType: "text",
+            data: customerInfo,
+            success: function(data) {
+                $(".card-body").html(data);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
 
-            
-    
-    
-    
-    
     </script>
     
 
