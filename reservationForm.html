@@ -80,6 +80,12 @@
             data: customerInfo,
             success: function(data) {
                 $(".card-body").html(data);
+                
+                if (data.id <= 5) {
+                    alert("You made a reservation!")
+                } else {
+                    alert("You are on the waiting list")
+                }
             },
             error: function(error) {
                 console.log(error);
