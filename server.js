@@ -14,7 +14,7 @@ var tables = [{
 }];
 var waitlist = [{
 }];
-//Routes
+//Routes getters
 app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "index.html"));
 });
@@ -34,6 +34,21 @@ app.get("/api/tables", function (req, res) {
 app.get("/api/waitlist", function (req, res) {
     return res.json(waitlist);
 });
+
+// post route
+
+app.post("/api/tables", function (req, res) {
+    // req.body hosts is equal to the JSON post sent from the user
+    // This works because of our body parsing middleware
+    var newTable = req.body;
+
+    console.log(newTable);
+
+    tables.push(newTable);
+
+    res.json(newTable);
+});
+
 
 app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
