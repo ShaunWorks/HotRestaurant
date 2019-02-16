@@ -37,9 +37,11 @@ app.get("/api/waitlist", function (req, res) {
 
 // post route
 
+
 app.post("/api/tables", function (req, res) {
     // req.body hosts is equal to the JSON post sent from the user
     // This works because of our body parsing middleware
+
     var newTable = req.body;
 
     console.log(newTable);
@@ -48,6 +50,37 @@ app.post("/api/tables", function (req, res) {
 
     res.json(newTable);
 });
+
+app.post("/api/waitlist", function (req, res) {
+    // req.body hosts is equal to the JSON post sent from the user
+    // This works because of our body parsing middleware
+
+    var newWait = req.body;
+
+    console.log(newWait);
+
+    tables.push(newWait);
+
+    res.json(newWait);
+});
+
+
+
+function fulltable() {
+    app.post("/api/waitlist", function (req, res) {
+        // req.body hosts is equal to the JSON post sent from the user
+        // This works because of our body parsing middleware
+
+        var newWait = req.body;
+
+        console.log(newWait);
+
+        tables.push(newWait);
+
+        res.json(newWait);
+
+    });
+}
 
 
 app.listen(PORT, function () {
