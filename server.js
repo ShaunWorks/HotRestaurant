@@ -14,6 +14,18 @@ var tables = [{
 var waitlist = [{
 }];
 //Routes
+app.get("/", function (req, res) {
+    res.sendFile(path.join(__dirname, "index.html"));
+});
+
+app.get("/tables", function (req, res) {
+    res.sendFile(path.join(__dirname, "tables.html"));
+});
+
+app.get("/reservationForm", function (req, res) {
+    res.sendFile(path.join(__dirname, "reservationForm.html"));
+});
+
 app.get("/api/tables", function (req, res) {
     return res.json(tables);
 });
